@@ -1,15 +1,15 @@
 export class filterProductDto {
     category: string;
-    color: string[];
-    sizes: string[];
-    material: string[];
-    minPrice: number;
-    maxPrice: number;
-    hit: boolean;
-    sale: boolean;
-    skip: number;
-    limit: number;
-    sort: {
+    colors?: string;
+    sizes?: string;
+    materials?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    hit?: boolean;
+    sale?: boolean;
+    skip?: number;
+    limit?: number;
+    sort?: {
         field: string;
         value: any;
     };

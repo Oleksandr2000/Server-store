@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Color, ColorDocument } from 'src/product/models/color.model';
@@ -14,17 +14,21 @@ export class CategoryService {
     async create(dto: CreateCategoryDto) {
         const findCategory = await this.categoryModel.findOne({ name: dto.name });
 
-        if (!findCategory) {
-            await this.categoryModel.create(dto);
+        if (findCategory) {
+            throw new HttpException(`Категорія ${findCategory.name} вже існує`, HttpStatus.BAD_REQUEST);
         }
 
-        const categories = await this.categoryModel.find().exec();
+        const category = await this.categoryModel.create(dto);
 
-        return categories;
+        return category;
     }
 
     async update(_id: string, dto: CreateCategoryDto) {
-        await this.categoryModel.findOneAndUpdate({ _id }, dto, { returnDocument: 'after' });
+        const updatedCategory = await this.categoryModel.findOneAndUpdate({ _id }, dto, { returnDocument: 'after' });
+
+        if (updatedCategory) {
+            throw new HttpException(`Інформацію про категорію ${updatedCategory.name} оновлено`, HttpStatus.OK);
+        }
     }
 
     async delete(_id: string) {

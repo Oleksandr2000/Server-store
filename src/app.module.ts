@@ -7,6 +7,8 @@ import { CategoryModule } from './category/category.module';
 import { CollectionModule } from './collection/collection.module';
 import { CapsuleModule } from './capsule/capsule.module';
 import { FilterModule } from './filter/filter.module';
+import { BasketModule } from './basket/basket.module';
+import { FavoriteModule } from './favorite/favorite.module';
 
 @Module({
     imports: [
@@ -21,6 +23,8 @@ import { FilterModule } from './filter/filter.module';
         CollectionModule,
         CapsuleModule,
         FilterModule,
+        BasketModule,
+        FavoriteModule,
     ],
     controllers: [],
     providers: [],

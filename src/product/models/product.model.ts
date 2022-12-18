@@ -3,20 +3,27 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
 export type ProductMaterial = {
+    id?: string;
+
     name: string;
 
     value: number;
 };
 
 export type Size = {
+    id?: string;
     name: string;
-
-    disabled: boolean;
+    count: number;
 };
 
 export type Color = {
     name: string;
     value: string;
+};
+
+export type ProductImage = {
+    id: string;
+    src: string;
 };
 
 export type ProductDocument = Product & Document;
@@ -41,8 +48,8 @@ export class Product {
     @Prop()
     material: ProductMaterial[];
 
-    @Prop([String])
-    images: string[];
+    @Prop({ type: Array })
+    images: ProductImage[];
 
     @Prop({ type: Object })
     color: Color;

@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type UserModel = User & Document;
+export type UserDocument = User & Document;
 
 @Schema({ timestamps: true })
 export class User {
@@ -9,7 +9,13 @@ export class User {
     email: string;
 
     @Prop()
-    passwordHash: string;
+    name: string;
+
+    @Prop()
+    password: string;
+
+    @Prop()
+    number: number;
 
     @Prop()
     role: string;

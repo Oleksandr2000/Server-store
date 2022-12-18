@@ -3,10 +3,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductController } from './product.controller';
 import { Product, ProductSchema } from './models/product.model';
 import { ProductService } from './product.service';
+import { Category, CategorySchema } from '../category/category.model';
 import { Color, ColorSchema } from './models/color.model';
 import { Material, MaterialSchema } from './models/material.model';
 import { Size, SizeSchema } from './models/size.model';
-import { Category, CategorySchema } from '../category/category.model';
 
 @Module({
     imports: [

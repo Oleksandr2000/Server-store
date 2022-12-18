@@ -1,4 +1,4 @@
-import { Color, ProductMaterial, Size } from '../models/product.model';
+import { Color, ProductImage, ProductMaterial, Size } from '../models/product.model';
 import * as mongoose from 'mongoose';
 
 export class CreateProductDto {
@@ -14,7 +14,7 @@ export class CreateProductDto {
 
     material: ProductMaterial[];
 
-    images: string[];
+    images: ProductImage[];
 
     color: Color;
 

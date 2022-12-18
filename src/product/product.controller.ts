@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
+import { Query } from '@nestjs/common/decorators';
 import { CreateProductDto } from './dto/create-product.dto';
 import { filterProductDto } from './dto/filter-product.dto';
 import { ProductService } from './product.service';
@@ -13,8 +14,8 @@ export class ProductController {
     }
 
     @Get()
-    async getAll() {
-        return await this.productService.getAll();
+    async getAll(@Query() query: filterProductDto) {
+        return await this.productService.getAll(query);
     }
 
     @Get(':id')
@@ -23,18 +24,12 @@ export class ProductController {
     }
 
     @Delete(':id')
-    async delete(@Param() id: string) {
-        await this.productService.delete(id);
+    async delete(@Param() param: { id: string }) {
+        await this.productService.delete(param.id);
     }
 
     @Patch('update/:id')
-    async update(@Param() id: string, @Body() dto: CreateProductDto) {
-        return await this.productService.update(id, dto);
-    }
-
-    @HttpCode(200)
-    @Post('filtred-products')
-    async getAllFilteredProducts(@Body() dto: filterProductDto) {
-        return await this.productService.getAllFilteredProducts(dto);
+    async update(@Param() param: { id: string }, @Body() dto: CreateProductDto) {
+        return await this.productService.update(param.id, dto);
     }
 }

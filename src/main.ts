@@ -6,7 +6,8 @@ async function start() {
     app.setGlobalPrefix('api');
     app.enableCors({
         allowedHeaders: ['content-type'],
-        origin: ['http://localhost:3000', 'https://next-store-liard-three.vercel.app/'],
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
     });
     await app.listen(process.env.PORT, () => {

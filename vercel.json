@@ -1,19 +1,22 @@
 {
     "version": 2,
+    "name": "next-store-server",
+    "buildCommand": "npm start",
+    "installCommand": "npm install",
     "env": {
         "DB_URL": "mongodb+srv://admin:admin@cluster0.hfofisu.mongodb.net/store?retryWrites=true&w=majority"
     },
     "builds": [
         {
-            "src": "src/main.ts",
+            "src": "dist/main.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "src/main.ts",
-            "methods": ["GET", "POST", "PATCH", "DELETE"]
+            "dest": "dist/main.js",
+            "methods": ["GET", "POST", "PATCH", "PUT", "DELETE"]
         }
     ]
 }

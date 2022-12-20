@@ -5,7 +5,7 @@ async function start() {
     const app = await NestFactory.create(AppModule);
     app.setGlobalPrefix('api');
     app.enableCors({
-        origin: ['http://localhost:3000', 'https://server-store.vercel.app'],
+        origin: ['http://localhost:3000', 'https://next-store-liard-three.vercel.app'],
         allowedHeaders: ['Accept', 'Content-Type', 'Access-Control-Allow-Origin'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         preflightContinue: false,

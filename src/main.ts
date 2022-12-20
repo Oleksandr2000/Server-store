@@ -6,7 +6,7 @@ async function start() {
     app.setGlobalPrefix('api');
     app.enableCors({
         origin: ['http://localhost:3000'],
-        allowedHeaders: ['Accept', 'Content-Type'],
+        allowedHeaders: ['Accept', 'Content-Type', 'Access-Control-Allow-Origin'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         preflightContinue: false,
         optionsSuccessStatus: 204,

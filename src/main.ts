@@ -5,9 +5,10 @@ async function start() {
     const app = await NestFactory.create(AppModule);
     app.setGlobalPrefix('api');
     app.enableCors({
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        origin: true,
+        origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
         credentials: true,
     });
     await app.listen(process.env.PORT, () => {

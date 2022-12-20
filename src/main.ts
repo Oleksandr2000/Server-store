@@ -5,7 +5,7 @@ async function start() {
     const app = await NestFactory.create(AppModule);
     app.setGlobalPrefix('api');
     app.enableCors({
-        origin: '*',
+        origin: ['http://localhost:3000'],
         allowedHeaders: ['Accept', 'Content-Type'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         preflightContinue: false,

@@ -12,13 +12,6 @@
             "use": "@vercel/node"
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "dist/main.js",
-            "methods": ["GET", "POST", "PATCH", "PUT", "DELETE"]
-        }
-    ],
     "headers": [
         {
             "source": "/(.*)",
@@ -31,6 +24,13 @@
                     "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
                 }
             ]
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "dist/main.js",
+            "methods": ["GET", "POST", "PATCH", "PUT", "DELETE"]
         }
     ]
 }

@@ -5,7 +5,7 @@ async function start() {
     const app = await NestFactory.create(AppModule);
     app.setGlobalPrefix('api');
     app.enableCors({
-        allowedHeaders: ['content-type'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
         origin: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,

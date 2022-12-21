@@ -13,4 +13,5 @@ export declare class filterProductDto {
         field: string;
         value: any;
     };
+    term?: string;
 }

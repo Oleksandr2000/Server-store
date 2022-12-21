@@ -60,6 +60,7 @@ export class ProductService {
                         : { $ne: null },
                 hit: query.hit ? { $ne: false } : { $ne: null },
                 sale: query.sale ? { $gt: 0 } : { $ne: null },
+                title: query.term ? { $regex: query.term, $options: 'i' } : { $ne: null },
                 'color.name': colors && colors.length > 0 ? { $in: colors } : { $ne: null },
                 'material.name': materials && materials.length > 0 ? { $in: materials } : { $ne: null },
                 'sizes.name': sizes && sizes.length > 0 ? { $in: sizes } : { $ne: null },
@@ -73,14 +74,15 @@ export class ProductService {
                 price: query.maxPrice && query.minPrice ? { $gt: query.minPrice, $lt: query.maxPrice } : { $ne: null },
                 hit: query.hit ? { $ne: false } : { $ne: null },
                 sale: query.sale ? { $gt: 0 } : { $ne: null },
+                title: query.term ? { $regex: query.term, $options: 'i' } : { $ne: null },
                 'color.name': colors && colors.length > 0 ? { $in: colors } : { $ne: null },
                 'material.name': materials && materials.length > 0 ? { $in: materials } : { $ne: null },
                 'sizes.name': sizes && sizes.length > 0 ? { $in: sizes } : { $ne: null },
                 'sizes.count': sizes && sizes.length > 0 ? { $gt: 0 } : { $ne: null },
             })
             .sort({ title: 1 })
-            .skip(query.skip * query.limit)
-            .limit(query.limit)
+            .skip(query.skip ? query.skip * query.limit : 0)
+            .limit(query.limit ? query.limit : count)
             .exec();
 
         return { count, products };

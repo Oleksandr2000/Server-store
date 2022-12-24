@@ -23,11 +23,20 @@ let CapsuleController = class CapsuleController {
     async create(dto) {
         return await this.capsuleService.create(dto);
     }
-    async remove(id) {
-        return await this.capsuleService.remove(id);
+    async remove(param) {
+        return await this.capsuleService.remove(param.id);
     }
-    async update(dto, id) {
-        return await this.capsuleService.update(dto, id);
+    async update(dto) {
+        return await this.capsuleService.update(dto);
+    }
+    async getAll() {
+        return await this.capsuleService.getAll();
+    }
+    async getOne(param) {
+        return await this.capsuleService.getOne(param.id);
+    }
+    async getRecomendation(param) {
+        return await this.capsuleService.getRecomendation(param.id);
     }
 };
 __decorate([
@@ -41,17 +50,36 @@ __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], CapsuleController.prototype, "remove", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Patch)('update'),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_capsule_dto_1.CreateCapsuleDto, String]),
+    __metadata("design:paramtypes", [create_capsule_dto_1.UpdateCapsuleDto]),
     __metadata("design:returntype", Promise)
 ], CapsuleController.prototype, "update", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CapsuleController.prototype, "getAll", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], CapsuleController.prototype, "getOne", null);
+__decorate([
+    (0, common_1.Get)('recomendation/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], CapsuleController.prototype, "getRecomendation", null);
 CapsuleController = __decorate([
     (0, common_1.Controller)('capsule'),
     __metadata("design:paramtypes", [capsule_service_1.CapsuleService])

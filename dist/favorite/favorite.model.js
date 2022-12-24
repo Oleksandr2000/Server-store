@@ -15,12 +15,12 @@ const mongoose = require("mongoose");
 let Favorite = class Favorite {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId }),
-    __metadata("design:type", Object)
+    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId, ref: 'User' }),
+    __metadata("design:type", mongoose.Types.ObjectId)
 ], Favorite.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId }),
-    __metadata("design:type", Object)
+    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId, ref: 'Product' }),
+    __metadata("design:type", mongoose.Types.ObjectId)
 ], Favorite.prototype, "product", void 0);
 Favorite = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })

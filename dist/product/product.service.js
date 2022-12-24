@@ -83,8 +83,7 @@ let ProductService = class ProductService {
         return { count, products };
     }
     async getOne(_id) {
-        console.log(_id);
-        const product = await this.productModel.findById(_id);
+        const product = await this.productModel.findById(_id).populate('recomendation');
         const hashCode = product.code.split('#');
         const variants = await this.productModel.find({ code: { $regex: hashCode[0] } }, { _id: 1, color: 1 });
         return { product, variants };

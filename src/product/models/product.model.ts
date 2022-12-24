@@ -66,8 +66,8 @@ export class Product {
     @Prop({ type: mongoose.Types.ObjectId, ref: 'collection' })
     colections?: mongoose.Types.ObjectId;
 
-    @Prop({ type: mongoose.Types.ObjectId, ref: 'capsule' })
-    capsule?: mongoose.Types.ObjectId;
+    @Prop({ type: [mongoose.Types.ObjectId], ref: 'Product' })
+    recomendation?: mongoose.Types.ObjectId[];
 
     @Prop()
     disabled: boolean;

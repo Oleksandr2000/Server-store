@@ -1,9 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Color, ColorDocument } from 'src/product/models/color.model';
-import { Material, MaterialDocument } from 'src/product/models/material.model';
-import { Size, SizeDocument } from 'src/product/models/size.model';
 import { Category, CategoryDocument } from './category.model';
 import { CreateCategoryDto } from './dto/create-category.dto';
 

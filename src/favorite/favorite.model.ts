@@ -6,11 +6,11 @@ export type FavoriteDocument = Favorite & Document;
 
 @Schema({ timestamps: true })
 export class Favorite {
-    @Prop({ type: mongoose.Types.ObjectId })
-    user: ObjectId;
+    @Prop({ type: mongoose.Types.ObjectId, ref: 'User' })
+    user: mongoose.Types.ObjectId;
 
-    @Prop({ type: mongoose.Types.ObjectId })
-    product: ObjectId;
+    @Prop({ type: mongoose.Types.ObjectId, ref: 'Product' })
+    product: mongoose.Types.ObjectId;
 }
 
 export const FavoriteSchema = SchemaFactory.createForClass(Favorite);

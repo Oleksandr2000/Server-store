@@ -20,27 +20,27 @@ let FavoriteController = class FavoriteController {
     constructor(favoriteService) {
         this.favoriteService = favoriteService;
     }
-    async addToBasket(dto) {
-        return await this.favoriteService.add(dto);
+    async togleItem(dto) {
+        return await this.favoriteService.togle(dto);
     }
-    async removeFromBasket(param) {
-        return await this.favoriteService.remove(param.id);
+    async getFavorites(query) {
+        return await this.favoriteService.get(query);
     }
 };
 __decorate([
-    (0, common_1.Post)('add'),
+    (0, common_1.Post)('togle'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [add_to_favorite_dto_1.AddToFavoriteDto]),
     __metadata("design:returntype", Promise)
-], FavoriteController.prototype, "addToBasket", null);
+], FavoriteController.prototype, "togleItem", null);
 __decorate([
-    (0, common_1.Delete)('remove/:id'),
-    __param(0, (0, common_1.Param)()),
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], FavoriteController.prototype, "removeFromBasket", null);
+], FavoriteController.prototype, "getFavorites", null);
 FavoriteController = __decorate([
     (0, common_1.Controller)('favorite'),
     __metadata("design:paramtypes", [favorite_service_1.FavoriteService])

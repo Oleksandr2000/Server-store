@@ -63,9 +63,9 @@ __decorate([
     __metadata("design:type", mongoose.Types.ObjectId)
 ], Product.prototype, "colections", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId, ref: 'capsule' }),
-    __metadata("design:type", mongoose.Types.ObjectId)
-], Product.prototype, "capsule", void 0);
+    (0, mongoose_1.Prop)({ type: [mongoose.Types.ObjectId], ref: 'Product' }),
+    __metadata("design:type", Array)
+], Product.prototype, "recomendation", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)

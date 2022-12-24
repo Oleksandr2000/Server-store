@@ -21,11 +21,22 @@ let FavoriteService = class FavoriteService {
     constructor(favoriteModel) {
         this.favoriteModel = favoriteModel;
     }
-    async add(dto) {
-        await this.favoriteModel.create(dto);
+    async togle(dto) {
+        const existFavorite = await this.favoriteModel.findOne({ user: dto.user, product: dto.product });
+        if (existFavorite) {
+            const favorite = await this.favoriteModel.deleteOne({ _id: existFavorite._id });
+            return favorite;
+        }
+        else {
+            const favorite = await this.favoriteModel.create(dto);
+            return favorite;
+        }
     }
-    async remove(_id) {
-        await this.favoriteModel.deleteOne({ _id });
+    async get(query) {
+        const favorites = await this.favoriteModel
+            .find({ user: query.user, product: query.product ? query.product : { $ne: null } })
+            .populate('product');
+        return favorites;
     }
 };
 FavoriteService = __decorate([

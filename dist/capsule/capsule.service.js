@@ -21,9 +21,33 @@ let CapsuleService = class CapsuleService {
     constructor(capsuleModel) {
         this.capsuleModel = capsuleModel;
     }
-    async create(dto) { }
-    async remove(id) { }
-    async update(dto, id) { }
+    async create(dto) {
+        const look = await this.capsuleModel.create(dto);
+        return look;
+    }
+    async remove(_id) {
+        await this.capsuleModel.deleteOne({ _id });
+    }
+    async update(dto) {
+        console.log(dto);
+        const look = await this.capsuleModel.findOneAndUpdate({ _id: dto._id }, { name: dto.name, products: dto.products }, {
+            new: true,
+        });
+        console.log(look);
+        return look;
+    }
+    async getRecomendation(product) {
+        const looks = await this.capsuleModel.find({ products: { $in: product } });
+        return looks;
+    }
+    async getAll() {
+        const looks = await this.capsuleModel.find().populate('products');
+        return looks;
+    }
+    async getOne(_id) {
+        const look = await this.capsuleModel.findOne({ _id }).populate('products');
+        return look;
+    }
 };
 CapsuleService = __decorate([
     (0, common_1.Injectable)(),

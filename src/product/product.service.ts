@@ -89,8 +89,7 @@ export class ProductService {
     }
 
     async getOne(_id: string) {
-        console.log(_id);
-        const product = await this.productModel.findById(_id);
+        const product = await this.productModel.findById(_id).populate('recomendation');
 
         const hashCode = product.code.split('#');
 

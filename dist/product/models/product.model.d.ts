@@ -32,7 +32,7 @@ export declare class Product {
     sizes: Size[];
     code: string;
     colections?: mongoose.Types.ObjectId;
-    capsule?: mongoose.Types.ObjectId;
+    recomendation?: mongoose.Types.ObjectId[];
     disabled: boolean;
 }
 export declare const ProductSchema: mongoose.Schema<Product, mongoose.Model<Product, any, any, any, any>, {}, {}, {}, {}, "type", Product>;

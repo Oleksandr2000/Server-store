@@ -10,13 +10,19 @@ exports.BasketModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const basket_controller_1 = require("./basket.controller");
-const basket_model_1 = require("./basket.model");
+const basket_model_1 = require("./model/basket.model");
 const basket_service_1 = require("./basket.service");
+const order_model_1 = require("./model/order.model");
 let BasketModule = class BasketModule {
 };
 BasketModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: basket_model_1.Basket.name, schema: basket_model_1.BasketSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                { name: basket_model_1.Basket.name, schema: basket_model_1.BasketSchema },
+                { name: order_model_1.Order.name, schema: order_model_1.OrderSchema },
+            ]),
+        ],
         controllers: [basket_controller_1.BasketController],
         providers: [basket_service_1.BasketService],
     })

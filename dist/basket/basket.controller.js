@@ -16,10 +16,14 @@ exports.BasketController = void 0;
 const common_1 = require("@nestjs/common");
 const basket_service_1 = require("./basket.service");
 const add_to_basket_dto_1 = require("./dto/add-to-basket.dto");
+const confirm_order_dto_1 = require("./dto/confirm-order.dto");
 const update_basket_dto_1 = require("./dto/update-basket.dto");
 let BasketController = class BasketController {
     constructor(basketService) {
         this.basketService = basketService;
+    }
+    async getBasketProduct(param) {
+        return this.basketService.getBasketProduct(param.id);
     }
     async addToBasket(dto) {
         return await this.basketService.add(dto);
@@ -30,7 +34,17 @@ let BasketController = class BasketController {
     async removeFromBasket(param) {
         return await this.basketService.remove(param.id);
     }
+    async confirmOrder(dto) {
+        return await this.basketService.confirmOrder(dto);
+    }
 };
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], BasketController.prototype, "getBasketProduct", null);
 __decorate([
     (0, common_1.Post)('add'),
     __param(0, (0, common_1.Body)()),
@@ -53,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], BasketController.prototype, "removeFromBasket", null);
+__decorate([
+    (0, common_1.Post)('confirm'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [confirm_order_dto_1.ConfirmOrderDto]),
+    __metadata("design:returntype", Promise)
+], BasketController.prototype, "confirmOrder", null);
 BasketController = __decorate([
     (0, common_1.Controller)('basket'),
     __metadata("design:paramtypes", [basket_service_1.BasketService])

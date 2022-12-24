@@ -8,11 +8,25 @@ import { Favorite, FavoriteDocument } from './favorite.model';
 export class FavoriteService {
     constructor(@InjectModel(Favorite.name) private favoriteModel: Model<FavoriteDocument>) {}
 
-    async add(dto: AddToFavoriteDto) {
-        await this.favoriteModel.create(dto);
+    async togle(dto: AddToFavoriteDto) {
+        const existFavorite = await this.favoriteModel.findOne({ user: dto.user, product: dto.product });
+
+        if (existFavorite) {
+            const favorite = await this.favoriteModel.deleteOne({ _id: existFavorite._id });
+
+            return favorite;
+        } else {
+            const favorite = await this.favoriteModel.create(dto);
+
+            return favorite;
+        }
     }
 
-    async remove(_id: ObjectId) {
-        await this.favoriteModel.deleteOne({ _id });
+    async get(query: { product?: ObjectId; user: ObjectId }) {
+        const favorites = await this.favoriteModel
+            .find({ user: query.user, product: query.product ? query.product : { $ne: null } })
+            .populate('product');
+
+        return favorites;
     }
 }

@@ -1,28 +1,4 @@
-/// <reference types="mongoose/types/aggregate" />
-/// <reference types="mongoose/types/callback" />
-/// <reference types="mongoose/types/collection" />
-/// <reference types="mongoose/types/connection" />
-/// <reference types="mongoose/types/cursor" />
-/// <reference types="mongoose/types/document" />
-/// <reference types="mongoose/types/error" />
-/// <reference types="mongoose/types/expressions" />
-/// <reference types="mongoose/types/helpers" />
-/// <reference types="mongoose/types/middlewares" />
-/// <reference types="mongoose/types/indexes" />
-/// <reference types="mongoose/types/models" />
-/// <reference types="mongoose/types/mongooseoptions" />
-/// <reference types="mongoose/types/pipelinestage" />
-/// <reference types="mongoose/types/populate" />
-/// <reference types="mongoose/types/query" />
-/// <reference types="mongoose/types/schemaoptions" />
-/// <reference types="mongoose/types/schematypes" />
-/// <reference types="mongoose/types/session" />
-/// <reference types="mongoose/types/types" />
-/// <reference types="mongoose/types/utility" />
-/// <reference types="mongoose/types/validation" />
-/// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
-/// <reference types="mongoose/types/inferschematype" />
+import { ObjectId } from 'mongoose';
 import { CollectionService } from './collection.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 export declare class CollectionController {
@@ -31,11 +7,20 @@ export declare class CollectionController {
     create(dto: CreateCollectionDto): Promise<import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getAll(): Promise<Omit<import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
+    getAll(): Promise<(import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>[]>;
-    remove(id: string): Promise<void>;
-    udpate(dto: CreateCollectionDto, id: string): Promise<import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
+    })[]>;
+    getOne(param: {
+        id: ObjectId;
+    }): Promise<import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    remove(param: {
+        id: ObjectId;
+    }): Promise<void>;
+    udpate(dto: CreateCollectionDto, param: {
+        id: ObjectId;
+    }): Promise<import("./models/collection.model").Collection & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
 }

@@ -55,11 +55,13 @@ let FilterService = class FilterService {
         return filters;
     }
     async getAllFilters() {
-        const colors = await this.colorModel.find().exec();
-        const materials = await this.materialModel.find().exec();
+        const colors = await this.colorModel.distinct('name').exec();
+        const materials = await this.materialModel.distinct('name').exec();
+        const sizes = await this.sizeModel.distinct('name').exec();
         const filters = {
             colors,
             materials,
+            sizes,
         };
         return filters;
     }

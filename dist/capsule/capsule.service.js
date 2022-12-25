@@ -29,7 +29,6 @@ let CapsuleService = class CapsuleService {
         await this.capsuleModel.deleteOne({ _id });
     }
     async update(dto) {
-        console.log(dto);
         const look = await this.capsuleModel.findOneAndUpdate({ _id: dto._id }, { name: dto.name, products: dto.products }, {
             new: true,
         });

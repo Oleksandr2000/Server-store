@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { ObjectId } from 'mongoose';
 import { CollectionService } from './collection.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 
@@ -16,13 +17,18 @@ export class CollectionController {
         return await this.collectionService.getAll();
     }
 
+    @Get(':id')
+    async getOne(@Param() param: { id: ObjectId }) {
+        return await this.collectionService.getOne(param.id);
+    }
+
     @Delete(':id')
-    async remove(@Param() id: string) {
-        return await this.collectionService.remove(id);
+    async remove(@Param() param: { id: ObjectId }) {
+        return await this.collectionService.remove(param.id);
     }
 
     @Patch(':id')
-    async udpate(@Body() dto: CreateCollectionDto, @Param() id: string) {
-        return await this.collectionService.update(dto, id);
+    async udpate(@Body() dto: CreateCollectionDto, @Param() param: { id: ObjectId }) {
+        return await this.collectionService.update(dto, param.id);
     }
 }

@@ -26,11 +26,14 @@ let CollectionController = class CollectionController {
     async getAll() {
         return await this.collectionService.getAll();
     }
-    async remove(id) {
-        return await this.collectionService.remove(id);
+    async getOne(param) {
+        return await this.collectionService.getOne(param.id);
     }
-    async udpate(dto, id) {
-        return await this.collectionService.update(dto, id);
+    async remove(param) {
+        return await this.collectionService.remove(param.id);
+    }
+    async udpate(dto, param) {
+        return await this.collectionService.update(dto, param.id);
     }
 };
 __decorate([
@@ -47,10 +50,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CollectionController.prototype, "getAll", null);
 __decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], CollectionController.prototype, "getOne", null);
+__decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], CollectionController.prototype, "remove", null);
 __decorate([
@@ -58,7 +68,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_collection_dto_1.CreateCollectionDto, String]),
+    __metadata("design:paramtypes", [create_collection_dto_1.CreateCollectionDto, Object]),
     __metadata("design:returntype", Promise)
 ], CollectionController.prototype, "udpate", null);
 CollectionController = __decorate([

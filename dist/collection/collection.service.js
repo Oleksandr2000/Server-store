@@ -30,8 +30,12 @@ let CollectionService = class CollectionService {
         return collection;
     }
     async getAll() {
-        const collections = await this.collectionModel.find().populate('product');
+        const collections = await this.collectionModel.find();
         return collections;
+    }
+    async getOne(_id) {
+        const collection = await this.collectionModel.findById(_id).populate('products');
+        return collection;
     }
     async remove(_id) {
         await this.collectionModel.deleteOne({ _id });

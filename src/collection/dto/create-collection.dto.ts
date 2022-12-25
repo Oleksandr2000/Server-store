@@ -1,5 +1,5 @@
 export class CreateCollectionDto {
     readonly name: string;
-    readonly description: string;
+    readonly img: string;
     readonly products: string[];
 }

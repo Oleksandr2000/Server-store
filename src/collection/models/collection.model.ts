@@ -10,10 +10,10 @@ export class Collection {
     name: string;
 
     @Prop()
-    description: string;
+    img: string;
 
-    @Prop({ type: mongoose.Types.ObjectId, ref: 'product' })
-    products: mongoose.Types.ObjectId;
+    @Prop({ type: [mongoose.Types.ObjectId], ref: 'Product' })
+    products: mongoose.Types.ObjectId[];
 }
 
 export const CollectionSchema = SchemaFactory.createForClass(Collection);

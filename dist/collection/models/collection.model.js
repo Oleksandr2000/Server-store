@@ -21,10 +21,10 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Collection.prototype, "description", void 0);
+], Collection.prototype, "img", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose.Types.ObjectId, ref: 'product' }),
-    __metadata("design:type", mongoose.Types.ObjectId)
+    (0, mongoose_1.Prop)({ type: [mongoose.Types.ObjectId], ref: 'Product' }),
+    __metadata("design:type", Array)
 ], Collection.prototype, "products", void 0);
 Collection = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })

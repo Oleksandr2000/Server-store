@@ -66,6 +66,7 @@ export class ProductService {
                 'sizes.name': sizes && sizes.length > 0 ? { $in: sizes } : { $ne: null },
                 'sizes.count': sizes && sizes.length > 0 ? { $gt: 0 } : { $ne: null },
             })
+            .sort([[query.sortField || 'title', query.sortValue || 1]])
             .exec();
 
         const products = await this.productModel
@@ -80,7 +81,7 @@ export class ProductService {
                 'sizes.name': sizes && sizes.length > 0 ? { $in: sizes } : { $ne: null },
                 'sizes.count': sizes && sizes.length > 0 ? { $gt: 0 } : { $ne: null },
             })
-            .sort({ title: 1 })
+            .sort([[query.sortField || 'title', query.sortValue || 1]])
             .skip(query.skip ? query.skip * query.limit : 0)
             .limit(query.limit ? query.limit : count)
             .exec();

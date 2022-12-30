@@ -9,9 +9,7 @@ export declare class filterProductDto {
     sale?: boolean;
     skip?: number;
     limit?: number;
-    sort?: {
-        field: string;
-        value: any;
-    };
+    sortField: string;
+    sortValue: any;
     term?: string;
 }

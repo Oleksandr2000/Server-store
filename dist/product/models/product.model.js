@@ -28,6 +28,10 @@ __decorate([
 ], Product.prototype, "sale", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
+    __metadata("design:type", Number)
+], Product.prototype, "currentPrice", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
 ], Product.prototype, "hit", void 0);
 __decorate([

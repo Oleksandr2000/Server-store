@@ -41,7 +41,7 @@ export class ProductService {
             );
         }
 
-        const product = await this.productModel.create(dto);
+        const product = await this.productModel.create({ ...dto, currentPrice: dto.price - dto.sale });
 
         return product;
     }
@@ -54,9 +54,9 @@ export class ProductService {
         const count = await this.productModel
             .count({
                 category: query.category !== undefined ? query.category : { $ne: null },
-                price:
+                currentPrice:
                     query.maxPrice && query.minPrice
-                        ? { $gt: Number(query.minPrice), $lt: Number(query.maxPrice) }
+                        ? { $gte: Number(query.minPrice), $lte: Number(query.maxPrice) }
                         : { $ne: null },
                 hit: query.hit ? { $ne: false } : { $ne: null },
                 sale: query.sale ? { $gt: 0 } : { $ne: null },
@@ -72,7 +72,8 @@ export class ProductService {
         const products = await this.productModel
             .find({
                 category: query.category !== undefined ? query.category : { $ne: null },
-                price: query.maxPrice && query.minPrice ? { $gt: query.minPrice, $lt: query.maxPrice } : { $ne: null },
+                currentPrice:
+                    query.maxPrice && query.minPrice ? { $gte: query.minPrice, $lte: query.maxPrice } : { $ne: null },
                 hit: query.hit ? { $ne: false } : { $ne: null },
                 sale: query.sale ? { $gt: 0 } : { $ne: null },
                 title: query.term ? { $regex: query.term, $options: 'i' } : { $ne: null },
@@ -104,7 +105,11 @@ export class ProductService {
     }
 
     async update(_id: string, dto: CreateProductDto) {
-        const product = await this.productModel.findOneAndUpdate({ _id }, dto, { new: true });
+        const product = await this.productModel.findOneAndUpdate(
+            { _id },
+            { ...dto, currentPrice: dto.price - dto.sale },
+            { new: true },
+        );
 
         return product;
     }

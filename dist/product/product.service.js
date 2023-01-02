@@ -42,7 +42,7 @@ let ProductService = class ProductService {
         if (!existColor) {
             throw new common_1.HttpException(`Для категорії ${dto.category} кольору ${dto.color.name} не існує`, common_1.HttpStatus.BAD_REQUEST);
         }
-        const product = await this.productModel.create(dto);
+        const product = await this.productModel.create(Object.assign(Object.assign({}, dto), { currentPrice: dto.price - dto.sale }));
         return product;
     }
     async getAll(query) {
@@ -52,8 +52,8 @@ let ProductService = class ProductService {
         const count = await this.productModel
             .count({
             category: query.category !== undefined ? query.category : { $ne: null },
-            price: query.maxPrice && query.minPrice
-                ? { $gt: Number(query.minPrice), $lt: Number(query.maxPrice) }
+            currentPrice: query.maxPrice && query.minPrice
+                ? { $gte: Number(query.minPrice), $lte: Number(query.maxPrice) }
                 : { $ne: null },
             hit: query.hit ? { $ne: false } : { $ne: null },
             sale: query.sale ? { $gt: 0 } : { $ne: null },
@@ -68,7 +68,7 @@ let ProductService = class ProductService {
         const products = await this.productModel
             .find({
             category: query.category !== undefined ? query.category : { $ne: null },
-            price: query.maxPrice && query.minPrice ? { $gt: query.minPrice, $lt: query.maxPrice } : { $ne: null },
+            currentPrice: query.maxPrice && query.minPrice ? { $gte: query.minPrice, $lte: query.maxPrice } : { $ne: null },
             hit: query.hit ? { $ne: false } : { $ne: null },
             sale: query.sale ? { $gt: 0 } : { $ne: null },
             title: query.term ? { $regex: query.term, $options: 'i' } : { $ne: null },
@@ -93,7 +93,7 @@ let ProductService = class ProductService {
         await this.productModel.deleteOne({ _id });
     }
     async update(_id, dto) {
-        const product = await this.productModel.findOneAndUpdate({ _id }, dto, { new: true });
+        const product = await this.productModel.findOneAndUpdate({ _id }, Object.assign(Object.assign({}, dto), { currentPrice: dto.price - dto.sale }), { new: true });
         return product;
     }
 };

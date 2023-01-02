@@ -1,9 +1,13 @@
-FROM node:14
-WORKDIR /store/server/
-ADD package.json package.json
-RUN npm instal
-ADD . .
+FROM node
 
-RUN npm run build
-RUN npm prun --production
+WORKDIR /app
+
+COPY package.json  /app
+
+RUN npm instal
+
+COPY . .
+
+EXPOSE 5000
+
 CMD ["node", "./dist/main.js"] 

@@ -40,6 +40,9 @@ export class Product {
     sale: number;
 
     @Prop()
+    currentPrice: number;
+
+    @Prop()
     hit: boolean;
 
     @Prop()
